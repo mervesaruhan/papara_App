@@ -13,7 +13,7 @@ namespace papara_firstweek_hwApp.API.Models.DTOs
         [Required(ErrorMessage = "Kullanıcı soyadı adı boş geçilemez!")]
         public string Surname { get; set; } = null!;
 
-        [Range(10, 100, ErrorMessage = "Yaş aralığı 18 ile 64 arasında olmalıdır.")]
+        [Range(10, 64, ErrorMessage = "Yaş aralığı 18 ile 64 arasında olmalıdır.")]
         [Required(ErrorMessage = "Kullanıcı yaşı boş geçilemez!")]
         public int? Age { get; set; }
     }
