@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using papara_firstweek_hwApp.API.Models;
@@ -15,7 +16,13 @@ namespace papara_firstweek_hwApp.API.Controllers
     public class UsersController : ControllerBase
     {
 
-        public readonly IUserService userService = new UserService( new UserRepository());
+        private readonly IUserService userService;
+        
+
+        public UsersController(IMapper mapper)
+        {
+            userService = new UserService(mapper);
+        }
 
         [HttpGet]
         public IActionResult GetAll()
@@ -24,26 +31,46 @@ namespace papara_firstweek_hwApp.API.Controllers
 
         }
 
+        [HttpGet ("{id}")]
+        public IActionResult GetById(int id)
+        {
+            //var user = userService.GetById(id);
+
+            //if (user == null)
+            //{
+                //return NotFound();
+            //}
+            //return Ok(user);
+
+            return Ok(userService.GetAll());
+
+        }
+
+        [HttpGet("page/{page}/size/{size}")]
+        public IActionResult GetProductsWithPaged(int page, int size)
+        {
+            return Ok(userService.GetAll());
+        }
+
         [HttpPost]
         public IActionResult Add(UserAddDtoRequest request)
         {
-            //complex type => request body
-            //simple type => request body
             int result = userService.Add(request);
-            return Created("", result);
-            
+            return Created("", result);   
         }
 
 
         [HttpPut]
-        public IActionResult Update()
+        public IActionResult Update(UserUpdateDtoRequest request)
         {
+            userService.Update(request);
             return NoContent();
         }
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
+            userService.Delete(id);
             return NoContent();
         }
 

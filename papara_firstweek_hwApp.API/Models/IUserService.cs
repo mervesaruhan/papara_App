@@ -4,7 +4,9 @@ namespace papara_firstweek_hwApp.API.Models
 {
     public interface IUserService
     {
-        List<User> GetAll();
+        List<UserDto> GetAll();
         int Add(UserAddDtoRequest request);
+        void Update(UserUpdateDtoRequest request);   
+        void Delete(int id);
     }
 }

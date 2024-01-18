@@ -1,43 +1,43 @@
 ﻿namespace papara_firstweek_hwApp.API.Models
 {
-    public class UserRepository
+    public class UserRepository:IUserRepository
     {
-        private static readonly List<User> _users = new List<User>();
+        private static readonly List<User> Users = new();
 
         public UserRepository()
         {
-            if (_users.Count == 0)
+            if (Users.Count == 0)
             {
-                _users.Add(new User { Id=1, Name="Merve", Surname="Saruhan", Age=27 });
-                _users.Add(new User { Id=2, Name="Sezen", Surname="Aksu", Age=55 });
-                _users.Add(new User { Id=3, Name="Mabel", Surname="Matiz", Age=34 });
-                _users.Add(new User { Id=4, Name="Neşe", Surname="Karaböcek", Age=66 });
+                Users.Add(new User { Id=1, Name="Merve", Surname="Saruhan", Age=27 });
+                Users.Add(new User { Id=2, Name="Sezen", Surname="Aksu", Age=55 });
+                Users.Add(new User { Id=3, Name="Mabel", Surname="Matiz", Age=34 });
+                Users.Add(new User { Id=4, Name="Neşe", Surname="Karaböcek", Age=66 });
 
             }
         }
 
         public List<User> GetAll()
-        { return _users; }
+        { return Users; }
 
         public  User Add(User user)
         { 
-            _users.Add(user);
+            Users.Add(user);
             return user;
         }
 
         public void Update(User user)
         {
-            var UsertoUpdateIndex = _users.FindIndex(u => u.Id == user.Id);
+            var UsertoUpdateIndex = Users.FindIndex(u => u.Id == user.Id);
 
-            _users[UsertoUpdateIndex].Name = user.Name;
-            _users[UsertoUpdateIndex].Surname = user.Surname;
-            _users[UsertoUpdateIndex].Age = user.Age;
+            Users[UsertoUpdateIndex].Name = user.Name;
+            Users[UsertoUpdateIndex].Surname = user.Surname;
+            Users[UsertoUpdateIndex].Age = user.Age;
 
         }
         public void Delete(int id)
         {
-            var UsertoDeleteIndex = _users.FindIndex(u => u.Id == id);
-            _users.RemoveAt(UsertoDeleteIndex);
+            var UsertoDeleteIndex = Users.FindIndex(u => u.Id == id);
+            Users.RemoveAt(UsertoDeleteIndex);
         }
 
 
