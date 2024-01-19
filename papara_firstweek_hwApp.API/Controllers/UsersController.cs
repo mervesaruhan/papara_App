@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 using papara_firstweek_hwApp.API.Models;
 using papara_firstweek_hwApp.API.Models.DTOs;
 
@@ -16,13 +17,35 @@ namespace papara_firstweek_hwApp.API.Controllers
     public class UsersController : ControllerBase
     {
 
+        private readonly IFileProvider _fileProvider;
         private readonly IUserService userService;
         
 
-        public UsersController(IMapper mapper)
+        public UsersController(IMapper mapper, IFileProvider fileProvider)
         {
+            _fileProvider = fileProvider;
             userService = new UserService(mapper);
         }
+
+        [Route("SaveFile")]
+        [HttpPost]
+        public IActionResult SavePicture(IFormFile file)
+        {
+            IDirectoryContents pictureDirectory = _fileProvider.GetDirectoryContents("wwwroot");
+
+            IFileInfo pictures = pictureDirectory.Where(x => x.Name == "pictures")!.Single();
+
+
+            string path = Path.Combine(pictures.PhysicalPath!, file.FileName);
+
+            using FileStream stream = new FileStream(path, FileMode.Create);
+            file.CopyTo(stream);
+
+            return Created($"/pictures/{file.FileName}", null);
+        }
+
+
+
 
         [HttpGet]
         public IActionResult GetAll()
@@ -55,7 +78,7 @@ namespace papara_firstweek_hwApp.API.Controllers
         [HttpPost]
         public IActionResult Add(UserAddDtoRequest request)
         {
-            int result = userService.Add(request);
+            ResponseDto<int> result = userService.Add(request);
             return Created("", result);   
         }
 

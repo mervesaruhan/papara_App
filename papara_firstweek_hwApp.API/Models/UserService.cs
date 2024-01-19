@@ -29,9 +29,9 @@ namespace papara_firstweek_hwApp.API.Models
         }
 
 
-        public int Add(UserAddDtoRequest request)
+        public ResponseDto<int> Add(UserAddDtoRequest request)
         {
-            int id  =new Random().Next(1,1000);
+            var id  =new Random().Next(1,1000);
             var user = new User
             {
                 Id = id,
@@ -40,7 +40,7 @@ namespace papara_firstweek_hwApp.API.Models
                 Age = request.Age!.Value,
             };
             userRepository.Add(user);
-            return user.Id;
+            return ResponseDto<int>.Success(id);
         }
 
         public void Update(UserUpdateDtoRequest request)
