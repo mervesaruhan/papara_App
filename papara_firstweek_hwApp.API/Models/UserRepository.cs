@@ -40,6 +40,11 @@
             Users.RemoveAt(UsertoDeleteIndex);
         }
 
+        public User? GetById(int id)
+        {
+            return Users.FirstOrDefault(p => p.Id == id);
+        }
+
 
 
     }

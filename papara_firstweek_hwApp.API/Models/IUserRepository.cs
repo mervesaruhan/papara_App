@@ -6,6 +6,6 @@
         User Add(User user);
         void Update(User user);
         void Delete(int id);
-
+        User? GetById(int id);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using papara_firstweek_hwApp.API.Models.DTOs;
+using System.Net.Http.Headers;
 
 namespace papara_firstweek_hwApp.API.Models
 {
@@ -8,5 +9,8 @@ namespace papara_firstweek_hwApp.API.Models
         ResponseDto<int> Add(UserAddDtoRequest request);
         void Update(UserUpdateDtoRequest request);   
         void Delete(int id);
+        UserDto GetById(int id);
     }
 }
+
+

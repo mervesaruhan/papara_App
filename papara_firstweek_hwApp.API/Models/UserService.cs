@@ -9,19 +9,20 @@ namespace papara_firstweek_hwApp.API.Models
     public class UserService : IUserService
     {
         private readonly IMapper _mapper;
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserService(IMapper mapper)
+        public UserService(IMapper mapper, IUserRepository userRepository)
         {
             _mapper = mapper;
-            userRepository = new UserRepository();
+            _userRepository = userRepository;
+            //userRepository = new UserRepository(); SOLİD prensiplerine uymuyor (newlenmiş, bağlılık var)
         }
         
 
 
         public List<UserDto> GetAll()
         {
-            List<User> users = userRepository.GetAll();
+            List<User> users = _userRepository.GetAll();
 
             List<UserDto>  userDtos = _mapper.Map<List<UserDto>>(users);
 
@@ -39,7 +40,7 @@ namespace papara_firstweek_hwApp.API.Models
                 Surname = request.Surname,
                 Age = request.Age!.Value,
             };
-            userRepository.Add(user);
+            _userRepository.Add(user);
             return ResponseDto<int>.Success(id);
         }
 
@@ -52,12 +53,19 @@ namespace papara_firstweek_hwApp.API.Models
                 Surname = request.Surname,
                 Age = request.Age
             };
-            userRepository.Update(user);
+            _userRepository.Update(user);
         }
 
         public void Delete(int id)
         {
-            userRepository.Delete(id);
+            _userRepository.Delete(id);
+        }
+
+        public UserDto GetById(int id)
+        {
+            var product = _userRepository.GetById(id);
+
+            return _mapper.Map<UserDto>(product);
         }
     }
 }

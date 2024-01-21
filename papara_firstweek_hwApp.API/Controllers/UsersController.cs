@@ -18,13 +18,14 @@ namespace papara_firstweek_hwApp.API.Controllers
     {
 
         private readonly IFileProvider _fileProvider;
-        private readonly IUserService userService;
+        private readonly IUserService _userService;
         
 
-        public UsersController(IMapper mapper, IFileProvider fileProvider)
+        public UsersController(IMapper mapper, IFileProvider fileProvider, IUserService userService)
         {
             _fileProvider = fileProvider;
-            userService = new UserService(mapper);
+            _userService = userService;
+            //userService = new UserService(mapper); SOLİD prensiplerine uymuyor
         }
 
         [Route("SaveFile")]
@@ -50,35 +51,27 @@ namespace papara_firstweek_hwApp.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(userService.GetAll());
+            return Ok(_userService.GetAll());
 
         }
 
         [HttpGet ("{id}")]
         public IActionResult GetById(int id)
         {
-            //var user = userService.GetById(id);
-
-            //if (user == null)
-            //{
-                //return NotFound();
-            //}
-            //return Ok(user);
-
-            return Ok(userService.GetAll());
-
+       
+            return Ok(_userService.GetById(id));
         }
 
         [HttpGet("page/{page}/size/{size}")]
         public IActionResult GetProductsWithPaged(int page, int size)
         {
-            return Ok(userService.GetAll());
+            return Ok(_userService.GetAll());
         }
 
         [HttpPost]
         public IActionResult Add(UserAddDtoRequest request)
         {
-            ResponseDto<int> result = userService.Add(request);
+            ResponseDto<int> result = _userService.Add(request);
             return Created("", result);   
         }
 
@@ -86,14 +79,14 @@ namespace papara_firstweek_hwApp.API.Controllers
         [HttpPut]
         public IActionResult Update(UserUpdateDtoRequest request)
         {
-            userService.Update(request);
+            _userService.Update(request);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            userService.Delete(id);
+            _userService.Delete(id);
             return NoContent();
         }
 
