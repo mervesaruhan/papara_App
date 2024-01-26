@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
+using papara_firstweek_hwApp.API.Filter;
+using papara_firstweek_hwApp.API.Filters;
 using papara_firstweek_hwApp.API.Models;
 using papara_firstweek_hwApp.API.Models.DTOs;
 
@@ -12,6 +14,8 @@ namespace papara_firstweek_hwApp.API.Controllers
     /// https://localhost:7092/api/users
     /// </summary>
 
+
+    [ExamleResourceFilter]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -55,6 +59,7 @@ namespace papara_firstweek_hwApp.API.Controllers
 
         }
 
+        [ServiceFilter<NotFoundActionFilter>]
         [HttpGet ("{id}")]
         public IActionResult GetById(int id)
         {

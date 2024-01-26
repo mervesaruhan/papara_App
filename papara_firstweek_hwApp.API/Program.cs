@@ -1,5 +1,6 @@
 using Microsoft.Extensions.FileProviders;
 using papara_firstweek_hwApp.API.Extensions;
+using papara_firstweek_hwApp.API.Filters;
 using papara_firstweek_hwApp.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 //burada artýk ürettiðimiz ext. ile serviceleri tek bir satýrda ekliyoruz
 
 builder.Services.AddUserDlContainer();
+builder.Services.AddScoped<NotFoundActionFilter>();
 
 
+builder.Services.AddControllers(x =>
+{
+    x.Filters.Add<NotFoundActionFilter>();
+});
 
-builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

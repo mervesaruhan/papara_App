@@ -42,7 +42,7 @@
 
         public User? GetById(int id)
         {
-            return Users.FirstOrDefault(p => p.Id == id);
+            return Users.FirstOrDefault(u => u.Id == id);
         }
 
 
