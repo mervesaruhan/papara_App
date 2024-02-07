@@ -1,4 +1,4 @@
-﻿namespace papara_firstweek_hwApp.API.Models
+﻿namespace papara_firstweek_hwApp.API.Models.Users
 {
     public interface IUserRepository
     {

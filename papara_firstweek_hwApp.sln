@@ -7,7 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "papara_firstweek_hwApp.API"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lınq_methods", "Lınq_methods\Lınq_methods.csproj", "{1737BA5A-775B-4B3A-8A1A-9A0799586718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clean_Code_Examples", "Clean_Code_Exmaples\Clean_Code_Examples.csproj", "{ABAF1522-0E47-436D-9C6A-C422EEE7D494}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clean_Code_Examples", "Clean_Code_Exmaples\Clean_Code_Examples.csproj", "{ABAF1522-0E47-436D-9C6A-C422EEE7D494}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queries", "Queries", "{929AAC4C-5ECA-48D2-86DE-CC84B0D10880}"
+	ProjectSection(SolutionItems) = preProject
+		..\SqlQeries\SQLQuery1.sql = ..\SqlQeries\SQLQuery1.sql
+		RedisDataTypes.txt = RedisDataTypes.txt
+		..\SqlQeries\SQLQuery_datatypes.sql = ..\SqlQeries\SQLQuery_datatypes.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

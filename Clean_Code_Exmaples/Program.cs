@@ -28,7 +28,7 @@ class Program
 
 class HesapMakinesi
 {
-    static void Main()
+    static void Maine()
     {
         Console.WriteLine("Toplama İşlemi");
         int sayi1 = KullanicidanSayiAl("Birinci sayıyı girin: ");
@@ -136,7 +136,7 @@ class KtISP
         }
     }
 
-    static void Main()
+    static void Main2()
     {
         IWorker worker = new Worker();
         worker.Work();
@@ -220,7 +220,7 @@ public class ShoppingCart
 
     public void RemoveItem(string itemName)
     {
-        Item itemToRemove = items.FirstOrDefault(item => item.Name == itemName);
+        Item? itemToRemove = items.FirstOrDefault(item => item.Name == itemName);
 
         if (itemToRemove != null)
         {
@@ -276,7 +276,7 @@ public class ShoppingCart2
 
     public void RemoveItem(string name)
     {
-        Item2 itemToRemove = items.FirstOrDefault(item => item.Name == name);
+        Item2? itemToRemove = items.FirstOrDefault(item => item.Name == name);
 
         if (itemToRemove != null)
         {

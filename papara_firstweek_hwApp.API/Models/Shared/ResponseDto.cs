@@ -1,4 +1,4 @@
-﻿namespace papara_firstweek_hwApp.API.Models
+﻿namespace papara_firstweek_hwApp.API.Models.Shared
 {
     public class ResponseDto<T>
     {
@@ -12,7 +12,7 @@
             {
                 Data = data
             };
-                
+
         }
 
         public static ResponseDto<T> Fail(List<string> errors)
@@ -31,6 +31,6 @@
             };
         }
 
-        
+
     }
 }

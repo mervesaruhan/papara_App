@@ -1,0 +1,49 @@
+
+        // String veri tipi örneði: veirlerin anahtar deger olarak saklnadýgý veri tipi. 
+        Pek çok basit iþlem yapýlabilir.
+
+        IDatabase db = redis.GetDatabase();
+        db.StringSet("key1", "value1");
+        string value1 = db.StringGet("key1");
+        
+
+        // Hash veri tipi örneði:bir alan adý/deðer çiftlerinin koleksiyonunu saklar. 
+        Bu, benzer verileri gruplamak ve bir anahtar altýnda birden fazla alan/deðer 
+        çiftini saklamak için kullanýþlýdýr.
+
+        HashEntry[] hashEntries = {
+            new HashEntry("field1", "value1"),
+            new HashEntry("field2", "value2"),
+            new HashEntry("field3", "value3")
+        };
+        db.HashSet("hashkey1", hashEntries);
+        RedisValue hashValue = db.HashGet("hashkey1", "field2");
+        
+
+        // List veri tipi örneði: List, sýralý bir koleksiyonu temsil eder. 
+        Listeler, elemanlar arasýnda sýralý bir iliþki gerektiren senaryolar 
+        için kullanýþlýdýr. 
+        db.ListRightPush("listkey1", "value1");
+        db.ListRightPush("listkey1", "value2");
+        RedisValue listValue = db.ListGetByIndex("listkey1", 0);
+        Console.WriteLine("List Example - Index: 0, Value: " + listValue);
+
+        // Set veri tipi örneði:Set'ler, bir anahtar altýnda benzersiz elemanlar 
+        listesi gerektiren senaryolar için kullanýlýr.
+        db.SetAdd("setkey1", "value1");
+        db.SetAdd("setkey1", "value2");
+        RedisValue[] setValues = db.SetMembers("setkey1");
+        
+
+        // Sorted set veri tipi örneði:orted Set, benzersiz elemanlarýn bir koleksiyonunu 
+        saklar ve her elemanýn bir sýralama skoru ile birlikte bulunmasýný saðlar. 
+        Elemanlar sýralý bir þekilde depolanýr ve sýralama skoruna göre sýralanabilirler. 
+        SortedSetEntry[] sortedSetEntries = {
+            new SortedSetEntry("value1", 1),
+            new SortedSetEntry("value2", 2),
+            new SortedSetEntry("value3", 3)
+        };
+        db.SortedSetAdd("sortedsetkey1", sortedSetEntries);
+        SortedSetEntry[] sortedSetValues = db.SortedSetRangeByRankWithScores("sortedsetkey1");
+        
+}

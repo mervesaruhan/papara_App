@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using papara_firstweek_hwApp.API.Exceptions;
 using papara_firstweek_hwApp.API.Extensions;
 using papara_firstweek_hwApp.API.Models.DTOs;
+using papara_firstweek_hwApp.API.Models.Shared;
 using System.Xml.Linq;
 
-namespace papara_firstweek_hwApp.API.Models
+namespace papara_firstweek_hwApp.API.Models.Users
 {
     public class UserService : IUserService
     {
@@ -17,22 +19,25 @@ namespace papara_firstweek_hwApp.API.Models
             _userRepository = userRepository;
             //userRepository = new UserRepository(); SOLİD prensiplerine uymuyor (newlenmiş, bağlılık var)
         }
-        
 
 
-        public List<UserDto> GetAll()
+
+        public ResponseDto<List<UserDto>> GetAll()
         {
-            List<User> users = _userRepository.GetAll();
+            var users = _userRepository.GetAll();
 
-            List<UserDto>  userDtos = _mapper.Map<List<UserDto>>(users);
+            throw new ClientValidationError("client hatası. format yanlış");
 
-            return userDtos;
+            var userDtos = _mapper.Map<List<UserDto>>(users);
+
+
+            return ResponseDto<List<UserDto>>.Success(userDtos);
         }
 
 
         public ResponseDto<int> Add(UserAddDtoRequest request)
         {
-            var id  =new Random().Next(1,1000);
+            var id = new Random().Next(1, 1000);
             var user = new User
             {
                 Id = id,
@@ -63,9 +68,9 @@ namespace papara_firstweek_hwApp.API.Models
 
         public UserDto GetById(int id)
         {
-            var product = _userRepository.GetById(id);
+            var user = _userRepository.GetById(id);
 
-            return _mapper.Map<UserDto>(product);
+            return _mapper.Map<UserDto>(user);
         }
     }
 }

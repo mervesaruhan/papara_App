@@ -1,6 +1,6 @@
-﻿namespace papara_firstweek_hwApp.API.Models
+﻿namespace papara_firstweek_hwApp.API.Models.Users
 {
-    public class UserRepository:IUserRepository
+    public class UserRepository : IUserRepository
     {
         private static readonly List<User> Users = new();
 
@@ -8,10 +8,10 @@
         {
             if (Users.Count == 0)
             {
-                Users.Add(new User { Id=1, Name="Merve", Surname="Saruhan", Age=27 });
-                Users.Add(new User { Id=2, Name="Sezen", Surname="Aksu", Age=55 });
-                Users.Add(new User { Id=3, Name="Mabel", Surname="Matiz", Age=34 });
-                Users.Add(new User { Id=4, Name="Neşe", Surname="Karaböcek", Age=66 });
+                Users.Add(new User { Id = 1, Name = "Merve", Surname = "Saruhan", Age = 27 });
+                Users.Add(new User { Id = 2, Name = "Sezen", Surname = "Aksu", Age = 55 });
+                Users.Add(new User { Id = 3, Name = "Mabel", Surname = "Matiz", Age = 34 });
+                Users.Add(new User { Id = 4, Name = "Neşe", Surname = "Karaböcek", Age = 66 });
 
             }
         }
@@ -19,8 +19,8 @@
         public List<User> GetAll()
         { return Users; }
 
-        public  User Add(User user)
-        { 
+        public User Add(User user)
+        {
             Users.Add(user);
             return user;
         }

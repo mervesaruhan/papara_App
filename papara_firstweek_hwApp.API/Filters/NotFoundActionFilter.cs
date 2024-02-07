@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using papara_firstweek_hwApp.API.Models;
+using papara_firstweek_hwApp.API.Models.Users;
 using System.Runtime.CompilerServices;
 
 namespace papara_firstweek_hwApp.API.Filters;
@@ -23,10 +23,10 @@ public class NotFoundActionFilter(IUserRepository userRepository) : Attribute, I
 
         var hasProduct = _userRepository.GetById(id);
 
-        if (hasProduct is null) context.Result = new NotFoundObjectResult($"User not found with id {id}");
+        if (hasProduct is null) context.Result = new NotFoundObjectResult($"Users not found with id {id}");
 
 
-        Console.WriteLine($"User  found with id {id}"); 
+        Console.WriteLine($"Users  found with id {id}"); 
         
         #region hatalı
 
@@ -35,7 +35,7 @@ public class NotFoundActionFilter(IUserRepository userRepository) : Attribute, I
         //if (idAsObject is null) return;
         //if (!int.TryParse(idAsObject.ToString(), out var id)) return;
         //var hasUser = _userRepository.GetById(id);
-        //if (hasUser is null) context.Result = new NotFoundObjectResult($"User not found with id {id}"); 
+        //if (hasUser is null) context.Result = new NotFoundObjectResult($"Users not found with id {id}"); 
         #endregion
 
     }

@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 using papara_firstweek_hwApp.API.Filter;
 using papara_firstweek_hwApp.API.Filters;
-using papara_firstweek_hwApp.API.Models;
 using papara_firstweek_hwApp.API.Models.DTOs;
+using papara_firstweek_hwApp.API.Models.Shared;
+using papara_firstweek_hwApp.API.Models.Users;
 
 namespace papara_firstweek_hwApp.API.Controllers
 {

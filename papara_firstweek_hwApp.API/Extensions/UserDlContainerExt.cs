@@ -1,4 +1,4 @@
-﻿using papara_firstweek_hwApp.API.Models;
+﻿using papara_firstweek_hwApp.API.Models.Users;
 
 namespace papara_firstweek_hwApp.API.Extensions
 {
@@ -6,8 +6,8 @@ namespace papara_firstweek_hwApp.API.Extensions
     {
 public static void  AddUserDlContainer(this IServiceCollection services)
         {
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepositoryWithSqlServer>();
+            services.AddScoped<IUserService, UserServiceWithSqlServer>();
         }
     }
 }

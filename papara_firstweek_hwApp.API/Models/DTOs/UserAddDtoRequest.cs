@@ -9,7 +9,7 @@ namespace papara_firstweek_hwApp.API.Models.DTOs
         [Required(ErrorMessage = "Kullanıcı adı boş geçilemez!")]
         public string Name { get; set; } = null!;
 
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "Kullanıcı soyadı  adı 3 ile 15 karakter arasında olmalıdır.")]
+        
         [Required(ErrorMessage = "Kullanıcı soyadı adı boş geçilemez!")]
         public string Surname { get; set; } = null!;
 

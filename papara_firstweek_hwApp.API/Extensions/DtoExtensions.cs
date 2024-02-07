@@ -1,5 +1,5 @@
-﻿using papara_firstweek_hwApp.API.Models;
-using papara_firstweek_hwApp.API.Models.DTOs;
+﻿using papara_firstweek_hwApp.API.Models.DTOs;
+using papara_firstweek_hwApp.API.Models.Users;
 using System.Collections.Generic;
 
 namespace papara_firstweek_hwApp.API.Extensions
